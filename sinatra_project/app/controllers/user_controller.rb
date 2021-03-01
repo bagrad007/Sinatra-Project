@@ -1,10 +1,14 @@
 class Usercontroller < ApplicationController
   get "/signup" do
+    if session[:user_id]
+      redirect "/users/home"
+    end
     erb :"users/new"
   end
 
   post "/signup" do
     @user = User.create(username: params[:username], password: params[:password])
+    session[:user_id] = @user.id
     redirect "/users"
   end
 
@@ -13,7 +17,13 @@ class Usercontroller < ApplicationController
   end
 
   post "/login" do
-    redirect "/users/home"
+    @user = User.find_by(username: params[:username])
+    if @user && @user.authenticate(params[:password])
+      session[:user_id] = @user.id
+      redirect "/users/home"
+    else
+      redirect "/login"
+    end
   end
 
   get "/users/home" do
