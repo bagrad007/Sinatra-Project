@@ -13,13 +13,11 @@ class Usercontroller < ApplicationController
   end
 
   post "/login" do
-    @user = User.find_by(:username => params[:username])
-    redirect "/users/show"
+    redirect "/users/home"
   end
 
-  get "/users/show" do
-    binding.pry
-    @user = User.find_by(:username => params[:username])
-    erb :"users/show"
+  get "/users/home" do
+    @user = User.find_by(username: params[:username])
+    erb :"users/user_page"
   end
 end
