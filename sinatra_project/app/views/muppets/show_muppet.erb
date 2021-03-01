@@ -1,2 +1,14 @@
-<h3> <%= @muppet.name %> </h3>
-<p>Job: <%= @muppet.job %></p>
+<h3>
+    <%= @muppet.name %>
+</h3>
+<p>Job: <%= @muppet.job %>
+</p>
+
+<form action="/muppets/<%=@muppet.id%>/edit">
+    <button type="submit" class="btn btn-warning" value="Edit Muppet">Edit Muppet</button>
+</form>
+
+<form method="POST" action="/muppets/<%=@muppet.id%>/delete">
+    <input type="hidden" type="hidden" name="_method" value="DELETE">
+    <button type="submit" class="btn btn-danger">Fire Muppet</button>
+</form>

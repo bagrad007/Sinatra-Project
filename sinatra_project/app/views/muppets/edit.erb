@@ -1,0 +1,6 @@
+<form method="post" action="/muppets/<%=@muppet.id%>">
+    <input id="hidden" type="hidden" name="_method" value="PATCH">
+    <p><strong>Muppet Name: <input type="text" name="name" value="<%=@muppet.name%>"> </strong></p>
+    <p><strong>Muppet Job: <input type="text" name="job" value="<%=@muppet.job%>"></strong></p>
+    <input type="submit" name="submit">
+</form>
