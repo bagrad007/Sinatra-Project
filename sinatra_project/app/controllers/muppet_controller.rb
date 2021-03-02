@@ -1,38 +1,65 @@
 class MuppetController < ApplicationController
   get "/muppets/new" do
-    erb :"muppets/new"
+    redirect_if_not_logged_in
+    if in_session?
+      erb :"muppets/new"
+    else
+      redirect to "/login"
+    end
   end
 
   post "/muppets" do
-    @muppets = Muppet.create(name: params[:name], job: params[:job])
+    @muppets = Muppet.create(name: params[:name], job: params[:job], user_id: session[:user_id])
     redirect to "/muppets"
   end
 
   get "/muppets" do
-    @muppets = Muppet.all
-    erb :"/muppets/muppets"
+    redirect_if_not_logged_in
+    if in_session?
+      @muppets = Muppet.all
+      erb :"/muppets/muppets"
+    else
+      redirect to "/login"
+    end
   end
 
-  get "/muppets/:id" do
-    @muppet = Muppet.find_by(id: params[:id])
-    erb :"muppets/show_muppet"
+  get "/muppets/:slug" do
+    redirect_if_not_logged_in
+    if in_session?
+      @muppet = find_slug
+      erb :"muppets/show_muppet"
+    else
+      redirect to "/login"
+    end
   end
 
-  get "/muppets/:id/edit" do
-    @muppet = Muppet.find_by(id: params[:id])
-    erb :"muppets/edit"
+  get "/muppets/:slug/edit" do
+    redirect_if_not_logged_in
+    if in_session?
+      @muppet = find_slug
+      erb :"muppets/edit"
+    else
+      redirect to "/login"
+    end
   end
 
   patch "/muppets/:id" do
-    binding.pry
-    @muppet = Muppet.find_by(id: params[:id])
-    @muppet.update(name: params[:name], job: params[:job])
-    redirect to "/muppets/#{@muppet.id}"
+    redirect_if_not_logged_in
+    if @muppet.user_id == session[:user_id]
+      @muppet = find_id
+      @muppet.update(name: params[:name], job: params[:job])
+    end
+    redirect to "/muppets/#{@muppet.slug}"
   end
 
   delete "/muppets/:id/delete" do
-    muppet = Muppet.find_by(id: params[:id])
-    muppet.delete
-    redirect to "/muppets"
+    redirect_if_not_logged_in
+    @muppet = find_id
+    if @muppet.user_id == session[:user_id]
+      @muppet.delete
+      redirect to "/muppets"
+    else
+      erb :"muppet/show_muppet"
+    end
   end
 end
