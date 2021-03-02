@@ -17,6 +17,10 @@ class ApplicationController < Sinatra::Base
       session[:user_id]
     end
 
+    def current_user
+      User.find_by(id: session[:user_id])
+    end
+
     def find_slug
       Muppet.find_by_slug(params[:slug])
     end
@@ -25,8 +29,12 @@ class ApplicationController < Sinatra::Base
       Muppet.find_by(id: params[:id])
     end
 
+    def muppet_belongs_to_current_user
+      @muppet && @muppet.user == current_user
+    end
+
     def redirect_if_not_logged_in
-      redirect "/login" unless User.find_by(id: session[:user_id])
+      redirect "/login" unless current_user
     end
   end
 end

@@ -16,20 +16,25 @@
       aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-item nav-link active" href="/users/home">Home</a>
-        <a class="nav-item nav-link" href="/muppets">Cast Members</a>
-        <a class="nav-item nav-link" href="/muppets/new">Hire a Muppet</a>
-        <a class="nav-item nav-link" href="/guest/new">Add a Guest</a>
-        <a class="nav-item nav-link disabled" href="#">Disabled</a>
+    <% if current_user %>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link active" href="/users/home">Home</a>
+          <a class="nav-item nav-link" href="/muppets">Cast Members</a>
+          <a class="nav-item nav-link" href="/muppets/new">Hire a Muppet</a>
+          <a class="nav-item nav-link" href="/guest/new">Add a Guest</a>
+          <a class="nav-item nav-link disabled" href="#">Disabled</a>
+        </div>
       </div>
-    </div>
-    <div class="nav navbar-nav navbar-right">
-      <a class="nav-item nav-link" href="/signup">Sign Up</a>
-      <a class="nav-item nav-link" href="/login">Log In</a>
-      <a class="nav-item nav-link" href="/logout">Logout</a>
-    </div>
+      <div class="nav navbar-nav navbar-right">
+        <a class="nav-item nav-link" href="/logout">Logout</a>
+      </div>
+      <% else %>
+        <div class="nav navbar-nav navbar-right">
+          <a class="nav-item nav-link" href="/signup">Sign Up</a>
+          <a class="nav-item nav-link" href="/login">Log In</a>
+        </div>
+        <% end %>
   </nav>
 </head>
 

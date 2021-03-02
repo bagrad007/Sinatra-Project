@@ -45,8 +45,8 @@ class MuppetController < ApplicationController
 
   patch "/muppets/:id" do
     redirect_if_not_logged_in
-    if @muppet.user_id == session[:user_id]
-      @muppet = find_id
+    @muppet = find_id
+    if muppet_belongs_to_current_user
       @muppet.update(name: params[:name], job: params[:job])
     end
     redirect to "/muppets/#{@muppet.slug}"
@@ -55,11 +55,11 @@ class MuppetController < ApplicationController
   delete "/muppets/:id/delete" do
     redirect_if_not_logged_in
     @muppet = find_id
-    if @muppet.user_id == session[:user_id]
+    if muppet_belongs_to_current_user
       @muppet.delete
       redirect to "/muppets"
     else
-      erb :"muppet/show_muppet"
+      erb :"muppets/show_muppet"
     end
   end
 end
