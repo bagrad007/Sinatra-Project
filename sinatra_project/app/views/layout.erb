@@ -9,8 +9,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  
   <link rel="stylesheet" href="/stylesheets/main.css" />
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="/">Root Page</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
       aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,16 +34,12 @@
         <a class="nav-item nav-link" href="/logout">Logout</a>
       </div>
       <% else %>
-        <div class="nav navbar-nav navbar-right">
+        <div class="nav navbar-nav">
           <a class="nav-item nav-link" href="/signup">Sign Up</a>
           <a class="nav-item nav-link" href="/login">Log In</a>
         </div>
         <% end %>
   </nav>
-</head>
-
-<body>
-
   <div class="wrapper">
 
     <%= yield %>

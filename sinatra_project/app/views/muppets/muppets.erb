@@ -1,7 +1,12 @@
-<% @muppets.each do |muppet| %>
-    <strong>
-       <a href="/muppets/<%=muppet.slug%>"> <%= muppet.name%> </a>
-    </strong>
-    <%= muppet.job%> <br>
+<% if !@muppets.empty?  %>
 
+   <% @muppets.each do |muppet| %>
+      <strong>
+         <a href="/muppets/<%=muppet.slug%>"> <%= muppet.name%> </a>
+      </strong>
+      <%= muppet.job%> <br>
+   <% end %>
+
+<% else %>
+   <p>You need muppets for the show!</p>
  <% end %>

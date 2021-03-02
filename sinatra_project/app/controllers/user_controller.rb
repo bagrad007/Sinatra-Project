@@ -9,7 +9,7 @@ class Usercontroller < ApplicationController
 
   post "/signup" do
     user = User.create(username: params[:username], password: params[:password])
-    if user.id
+    if user
       session[:user_id] = user.id
       redirect "/users/home"
     else
