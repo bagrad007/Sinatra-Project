@@ -13,7 +13,6 @@ class Usercontroller < ApplicationController
       session[:user_id] = user.id
       redirect "/users/home"
     else
-      @erros = user.errors.full_messages
       erb :"users/new"
     end
   end
@@ -30,10 +29,8 @@ class Usercontroller < ApplicationController
     user = User.find_by(username: params[:username])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      flash[:message] = "Login Successful"
       redirect "/users/home"
     else
-      @errors = ["Invalid Login"]
       redirect "/login"
     end
   end

@@ -8,8 +8,6 @@ class ApplicationController < Sinatra::Base
     set :session_secret, "muppetshow"
   end
 
-  register Sinatra::Flash
-
   get "/" do
     erb :index
   end

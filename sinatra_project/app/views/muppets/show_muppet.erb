@@ -3,8 +3,13 @@
 </h3>
 <p>Job: <%= @muppet.job %>
 </p>
-    <a href="/muppets/<%=@muppet.slug%>/edit"><button class="btn btn-warning" value="Edit Muppet">Edit Muppet</button></a>
-<form method="POST" action="/muppets/<%=@muppet.id%>/delete">
-    <input type="hidden" type="hidden" name="_method" value="DELETE">
-    <button type="submit" class="btn btn-danger">Fire Muppet</button>
-</form>
+<div class="btn-group btn-group-sm" role="group">
+    <a href="/muppets/<%=@muppet.slug%>/edit"><button class="btn btn-warning" value="Edit Muppet">Edit
+            Muppet</button></a>
+
+
+    <form method="POST" action="/muppets/<%=@muppet.id%>/delete">
+        <input type="hidden" type="hidden" name="_method" value="DELETE">
+        <button type="submit" class="btn btn-danger">Fire Muppet</button>
+    </form>
+</div>
