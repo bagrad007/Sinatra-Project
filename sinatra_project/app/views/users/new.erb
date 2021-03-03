@@ -1,7 +1,19 @@
-<h1>Please Sign Up to get Started</h1>
+<h1>Sign Up to get Started</h1>
 
 <form method="post" action="/signup">
-    <p><strong>Username: <input type="text" name="username"</strong></p>
-    <p><strong>Password: <input type="password" name="password"></strong></p>
-    <input type="submit" name="submit">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="exampleInputUsername"><strong>Username:</strong></label>
+            <input type="username" name="username" class="form-control" 
+                placeholder="Enter Username">
+             <small id="emailHelp" class="form-text text-muted">*So the Muppets can keep track of you</small>
+        </div>
+    </div><br>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="exampleInputPassword1"><strong>Password:</strong></label>
+            <input type="password" class="form-control" name="password" id="exampleInputPassword1" placeholder="Password">
+        </div>
+    </div><br>
+    <input type="submit" name="submit" class="btn btn-success">
 </form>

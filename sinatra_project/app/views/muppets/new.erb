@@ -1,21 +1,17 @@
 <h1>Add a Muppet</h1>
 <form method="post" action="/muppets">
-<div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1">
-    Pick a Muppet
-  </button>
-  <ul class="dropdown-menu" aria-labelled-by="dropdownMenuButton">
-    <li class="dropdown-item" name="name" href="#">Miss Piggy</li>
-    <li class="dropdown-item" name="name" href="#">Fozzie Bear</li>
-    <li class="dropdown-item" name="name" href="#">Kermit</li>
-    <li class="dropdown-item" name="name" href="#">Gonzo</li>
-    <li class="dropdown-item" name="name" href="#">Rolph</li>
-    <li class="dropdown-item" name="name" href="#">Swedish Chef</li>
-    <li class="dropdown-item" name="name" href="#">Sam Eagle</li>
-    <li class="dropdown-item" name="name" href="#">Dr. Honeydew</li>
-    <li class="dropdown-item" name="name" href="#">Beeker</li>
-  </ul>
-</div>
-    <p><strong>Muppet Job: <input type="text" name="job"></strong></p>
-    <input type="submit" name="submit">
+<div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="exampleInputUsername"><strong>Muppet Name:</strong></label>
+            <input name="name" class="form-control" placeholder="Enter Muppet Name">
+        </div>
+    </div><br>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="exampleInputPassword1"><strong>Muppet's Job: </strong></label>
+            <input type="text" class="form-control" name="job" 
+                placeholder="Job">
+        </div>
+    </div><br>
+    <input type="submit" name="submit" value="Submit" class="btn btn-primary">
 </form>

@@ -1,24 +1,19 @@
 class MuppetController < ApplicationController
   get "/muppets/new" do
     redirect_if_not_logged_in
-    if in_session?
-      erb :"muppets/new"
-    else
-      redirect to "/login"
-    end
+    erb :"muppets/new"
   end
 
   post "/muppets" do
-    binding.pry
-    @muppets = Muppet.create(name: params[:name], job: params[:job], user_id: session[:user_id])
-    redirect to "/muppets"
+    muppet = Muppet.create(name: params[:name], job: params[:job], user_id: session[:user_id])
+    redirect "/muppets"
   end
 
   get "/muppets" do
     redirect_if_not_logged_in
     if in_session?
       @muppets = current_user.muppets
-      erb :"/muppets/muppets"
+      erb :"/muppets/index"
     else
       redirect to "/login"
     end
@@ -46,18 +41,18 @@ class MuppetController < ApplicationController
 
   patch "/muppets/:id" do
     redirect_if_not_logged_in
-    @muppet = find_id
+    muppet = find_id
     if muppet_belongs_to_current_user
-      @muppet.update(name: params[:name], job: params[:job])
+      muppet.update(name: params[:name], job: params[:job])
     end
-    redirect to "/muppets/#{@muppet.slug}"
+    redirect to "/muppets/#{muppet.slug}"
   end
 
   delete "/muppets/:id/delete" do
     redirect_if_not_logged_in
-    @muppet = find_id
+    muppet = find_id
     if muppet_belongs_to_current_user
-      @muppet.delete
+      muppet.delete
       redirect to "/muppets"
     else
       erb :"muppets/show_muppet"
