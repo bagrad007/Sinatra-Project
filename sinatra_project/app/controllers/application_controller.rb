@@ -30,7 +30,7 @@ class ApplicationController < Sinatra::Base
     end
 
     def muppet_belongs_to_current_user
-      @muppet && @muppet.user == current_user
+      @muppet && @muppet.user_id == current_user.id
     end
 
     def redirect_if_not_logged_in
