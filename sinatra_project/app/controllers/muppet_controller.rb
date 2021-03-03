@@ -9,6 +9,7 @@ class MuppetController < ApplicationController
   end
 
   post "/muppets" do
+    binding.pry
     @muppets = Muppet.create(name: params[:name], job: params[:job], user_id: session[:user_id])
     redirect to "/muppets"
   end
