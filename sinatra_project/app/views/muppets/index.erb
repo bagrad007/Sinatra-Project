@@ -2,7 +2,7 @@
 
    <% @muppets.each do |muppet| %>
       <strong>
-         <a href="/muppets/<%=muppet.slug%>"> <%= muppet.name%> </a>
+         <a class="btn btn-light"href="/muppets/<%=muppet.slug%>"> <strong><%= muppet.name%> </strong> </a>
       </strong>
       <%= muppet.job%> <br>
    <% end %>
